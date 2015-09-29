@@ -1,0 +1,146 @@
+Part 1
+Given the following set of classes:
+interface Domestic {}
+interface Import {}
+interface Japanese extends Import {}
+interface German extends Import {}
+interface Detroit extends Domestic {}
+interface SpringHill extends Domestic {}
+   
+interface Vehicle {}
+interface Automobile extends Vehicle {}
+interface LargeAutomobile extends Vehicle {}
+interface Sedan extends Automobile {}
+interface Van extends LargeAutomobile {}
+interface Truck extends LargeAutomobile {}
+interface Compact extends Automobile {}
+interface SportsUtilityVehicle extends Truck, Van {}
+   
+class SaturnSL1 implements SpringHill, Sedan {}
+class HondaCivic implements Japanese, Compact {}
+class MercedesC230 implements German, Sedan {}
+class ChevyS10 implements Detroit, Truck {}
+class SubaruOutback implements Japanese, SportsUtilityVehicle {}
+
+For each of the following lines of code, tell me whether the assignment will compile, and if so, if it will succeed or fail at runtime. For any that fail to compile, pretend that the right-hand side of that statement is null, and answer the remaining questions assuming this change has been made. For example, in the following,
+ 1. Cat c = new Dog();
+ 2. c = new PersianCat()
+
+assignment number 1 will fail to compile. Answer number 2 assuming that 1 reads
+Cat c = null;
+
+
+Important note: Following the email from Mr. Limsico, I have re-written my answers such that they reflect what happens when each line is run with prior related lines of code set = null; . I have also included my deprecated results in a separate file, I have any misunderstanding and those were somehow more correct.
+
+Statement
+Compile without errors?
+Run without errors?
+Reason for Error
+1. SaturnSL1 sl = new SaturnSL1();
+Yes 
+Yes
+No error.
+ 
+2. HondaCivic hc = new HondaCivic();
+Yes
+Yes 
+No error 
+ 
+3. Japanese jp = new Japanese();
+No
+Yes
+Japanese is just an interface, not a class. You cannot instantiate the type Japanese. If you set `Japanese jp = null;` then it will run and print "null" if you call System.out.println(jp); 
+
+4. German gr = new MercedesC230();
+ Yes
+ Yes
+ N/A
+ 
+5. ChevyS10 cs = new Truck();
+ No
+ Yes
+Can't instantiate the type  Truck. Can't convert type from Truck to ChevyS10.
+
+It will run and print "null" if you call System.out.println();
+
+6. SubaruOutback sb = new SubaruOutback();
+Yes 
+Yes 
+No error.
+ 
+7. Domestic dm = sl;
+ Yes
+Yes 
+No error. Returns null, because we set sl to null as per my understanding of the clarification received by email.
+
+8. dm = hc;
+ No
+Yes 
+dm = hc; results in a type mismatch, but it runs if we set dm = null;
+
+9. dm = (Domestic) hc;
+ Yes
+ Yes
+No error. Returns null because I set hc = null; earlier.
+
+10. dm = cs;
+ Yes
+Yes
+ No error.
+
+Returns null because I set 
+ChevyS10 cs      = null;
+earlier
+
+11. dm = (Domestic) cs;
+ Yes
+ Yes
+No error.
+
+12. Import im = sb;
+ Yes
+ Yes
+No error.
+
+13. gr = im;
+No
+Yes 
+
+Type mismatch: cannot convert from Import to German
+
+Runs if set = null;
+
+14. gr = (German) im;
+ Yes
+Yes 
+No error.
+
+15. jp = im;
+ No
+Yes
+Type mismatch: cannot convert from Import to Japanese
+
+Runs if set = null;
+
+16. jp = (German) im;
+No
+Yes
+Type mismatch: cannot convert from German to Japanese
+
+Runs if set = null;
+
+17. jp = (Japanese) im;
+ Yes
+ Yes
+No error.
+
+18. Automobile a = cs;
+No
+Yes
+Type mismatch: cannot convert from ChevyS10 to Automobile
+Runs if set = null;
+
+19. a = hc;
+Yes
+Yes
+No error.

@@ -1,0 +1,54 @@
+package pg; 
+
+public class PGTest {
+
+	public static void main(String[] args) {
+		//SaturnSL1 sl     = new SaturnSL1();
+		SaturnSL1 sl     = null;
+		//HondaCivic hc    = new HondaCivic();
+		HondaCivic hc    = null;
+		//Japanese jp = new Japanese(); // Doesn't compile
+		Japanese jp      = null;
+		//German gr        = new MercedesC230();
+		German gr        = null;
+		//ChevyS10 cs      = new Truck(); // Doesn't compile
+		ChevyS10 cs      = null;
+		//SubaruOutback sb = new SubaruOutback();
+		SubaruOutback sb = null;
+		//Domestic dm      = sl;
+		Domestic dm      = null;
+		//dm               = hc;
+		dm               = null;
+		//dm               = (Domestic) hc;
+		//dm               = null;
+		//dm               = cs;
+		//dm               = null;
+		//dm               = (Domestic) cs;
+		//dm               = null;
+		//Import im        = sb;
+		Import im        = null;
+		//gr                 = im;
+		gr               = null;
+		//gr               = (German) im;
+		//jp               = im;
+		jp               = null;
+		//jp               = (German) im;
+		//jp               = (Japanese) im;
+		//Automobile a     = cs;
+		Automobile a     = null;
+		//a                = hc;
+		a                = null;
+		
+		System.out.println(a);
+		System.out.println(jp);
+		System.out.println(gr);
+		System.out.println(im);
+		System.out.println(dm);
+		System.out.println(sl);
+		System.out.println(hc);
+		System.out.println(sb);
+		System.out.println(cs);
+		
+	}
+
+}

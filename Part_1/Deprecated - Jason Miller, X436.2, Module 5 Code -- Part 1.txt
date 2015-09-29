@@ -1,0 +1,141 @@
+This is the version from BEFORE I received Carl's email
+
+
+1. SaturnSL1 sl = new SaturnSL1();
+ Yes Yes N/A
+ 
+ 2. HondaCivic hc = new HondaCivic();
+ Yes
+ Yes 
+ N/A 
+ 
+ 3. Japanese jp = new Japanese();
+ No
+ Yes
+ Japanese is just an interface, not a class. You cannot instantiate the type Japanese. If you set `Japanese jp = null;` then it will run and print "null" if you call System.out.println(jp); 
+
+ 4. German gr = new MercedesC230();
+ Yes
+ Yes
+ N/A
+ 
+ 5. ChevyS10 cs = new Truck();
+ No
+ Yes
+Can't instantiate the type  Truck. Can't convert type from Truck to ChevyS10.
+
+It will run and print "null" if you call System.out.println();
+
+6. SubaruOutback sb = new SubaruOutback();
+ Yes Yes N/A
+ 
+ 7. Domestic dm = sl;
+ Yes
+Yes 
+ No error if we assume that 
+SaturnSL1 sl     = new SaturnSL1();
+
+is still in the program
+
+8. dm = hc;
+ No
+If we do not include 
+Domestic dm      = sl; from #7; then No.
+
+Yes, it will run with dm = null if and only if we include the code from #7 in the program.
+ 
+dm cannot be resolved to a variable.
+
+dm was never declared, so it won't run even if we set dm = null;
+
+However, if we assume that the assignment 
+Domestic dm      = sl; from #7 is left in the program, then the reason it won't compile is that you can't convert from HondaCivic to Domestic.
+
+9. dm = (Domestic) hc;
+ Yes
+ No
+HandaCivic cannot be cast to Domestic (java.lang.ClassCastException)
+
+10. dm = cs;
+ Yes
+ Yes, if and only if we leave in the prior code wherein ChevyS10 cs = null; 
+and 
+Domestic dm      = sl;
+ This depends on the choices made about which prior lines of code are left in the program.
+
+If we were to run this line in isolation then neither dm or cs would've been declared.
+
+11. dm = (Domestic) cs;
+ Yes
+ Again, it depends on which lines of prior code are left in the program.
+
+In a best-case scenario yes it will run if Chevycs = null; is left in the progam.
+  This depends on the choices made about which prior lines of code are left in the program.
+
+If we were to run this line in isolation then neither dm or cs would've been declared (and even setting dm = null; wouldn't work since dm would not be declared).
+
+12. Import im = sb;
+ Yes
+ Yes
+This works fine as long as either
+SubaruOutback sb = new SubaruOutback();
+ is left in the program or we set the righthand side to = null; 
+
+13. gr = im;
+ It depends on which lines of prior code are left in the program.
+ 
+It depends on which lines of prior code are left in the program.
+
+If we include
+German gr        = new MercedesC230();
+then it will work
+ This works fine as long as the  code from #4 is included and we sight gr = null;
+
+Without the code from #4 then it would not work 
+
+14. gr = (German) im;
+ Yes
+ Yes, if and only if we set
+gr = null;
+and include code from #4 and #12, otherwise No.
+ Assuming that we have the code from problem #4 and #12, there is still a type mismatch, however we can set gr = null;
+
+ 15. jp = im;
+ No
+ Yes, if set to null and assuming jp was declared above as Japanese.
+ No errors if jp is set to null and assuming jp was declared above as Japanese. Otherwise, we would have type mismatch if jp = im; (assuming both jp and im had been declared with code from above).
+
+ 16. jp = (German) im;
+ No
+ Yes, if and only if jp is both declared as Japanese above and set = null;
+ The initial compilation fails due to a type mismatch -- cannot convert from German to Japanese.
+
+We can, of course, set jp = null;
+
+These rest on the obvious assumptions regarding prior code being included in the program.
+
+17. jp = (Japanese) im;
+ Yes
+ Yes, assuming
+
+Import im        = sb;
+
+and 
+
+Japanese jp      = null;
+
+were left in the program
+This runs without errors making reasonable assumptions about which lines of code were left in the program.
+
+However that does mean that this Japanese entity is a SubaruOutback, whereas Subarus are Australian cars, I think.
+
+18. Automobile a = cs;
+ No
+ Yes, if set to null
+Initial compilation fails because you cannot convert from ChevyS10 to Automobile.
+
+19. a = hc;
+ Yes
+ Yes
+ No error, given that 
+HondaCivic hc    = new HondaCivic(); is in the program
